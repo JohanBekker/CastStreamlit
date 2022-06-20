@@ -2,8 +2,15 @@ import streamlit as st
 
 import io
 import os
+
+import six
+# import urllib3
+from urllib3.packages.six import MovedModule
+from _io import TextIOWrapper
+
 import webbrowser
 from PIL import Image, ImageOps
+
 
 from options.test_options import TestOptions
 from models import create_model
@@ -25,7 +32,8 @@ st.set_page_config(page_title='Image Style Transfer', layout="wide")
 
 # from torch.nn.parameter import Parameter
 # @st.cache(show_spinner=True, hash_funcs={Parameter: lambda _: None}, allow_output_mutation=True)
-@st.cache(show_spinner=True, allow_output_mutation=True)#, hash_funcs={Parameter: lambda _: None}, allow_output_mutation=True)
+@st.cache(show_spinner=True, hash_funcs={six.MovedModule: lambda _: None, MovedModule: lambda _: None, TextIOWrapper: lambda _: None},
+          allow_output_mutation=True)#, hash_funcs={Parameter: lambda _: None}, allow_output_mutation=True)
 def load_model():
     model = create_model(opt)
     model.setup(opt)  # Loads the model weights

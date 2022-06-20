@@ -1,6 +1,6 @@
 # Streamlit Deployment of Domain Enhanced Arbitrary Image Style Transfer via Contrastive Learning (CAST)
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/johanbekker/mussstreamlit/app.py)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/johanbekker/caststreamlit/main/app.py)
 
 I'm a big fan of vintage posters. In the past I have tried to make vintage posters out of pictures by scraping a ton of vintage posters from the web,
 together with landscape pictures, and train a CycleGAN in the hopes that this would apply the style of vintage posters to the landscape pictures.
