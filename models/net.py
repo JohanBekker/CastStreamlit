@@ -116,6 +116,8 @@ class ADAIN_Encoder(nn.Module):
             return content_feats[-1], style_feats[-1]
         else:
             adain_feat = self.adain(content_feats[-1], style_feats[-1])
+            # print(adain_feat)
+            # print(content_feats)
             return  adain_feat
 
 class Decoder(nn.Module):

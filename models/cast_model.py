@@ -70,7 +70,8 @@ class CASTModel(BaseModel):
         bs_per_gpu = self.real_A.size(0) // max(len(self.opt.gpu_ids), 1)
         self.real_A = self.real_A[:bs_per_gpu]
         self.real_B = self.real_B[:bs_per_gpu]
-        self.forward()  # compute fake images: G(A)
+        with torch.no_grad():
+            self.forward()  # compute fake images: G(A)
             
 
     def set_input(self, input):
@@ -82,14 +83,15 @@ class CASTModel(BaseModel):
         AtoB = self.opt.direction == 'AtoB'
         self.real_A = input['A' if AtoB else 'B'].to(self.device)
         self.real_B = input['B' if AtoB else 'A'].to(self.device)
-        self.image_paths = input['A_paths' if AtoB else 'B_paths']
+        if all(path in input.keys() for path in ["A_paths", "B_paths"]):
+            self.image_paths = input['A_paths' if AtoB else 'B_paths']
 
     def forward(self):
         """Run forward pass; called by both functions <optimize_parameters> and <test>."""
 
         self.real_A_feat = self.netAE(self.real_A, self.real_B)  # G_A(A)
-        self.real_B_feat = self.netAE(self.real_B, self.real_A)  # G_A(A)
-        self.fake_A = self.netDec_A(self.real_B_feat)
+        # self.real_B_feat = self.netAE(self.real_B, self.real_A)  # G_A(A)
+        # self.fake_A = self.netDec_A(self.real_B_feat)
         self.fake_B = self.netDec_B(self.real_A_feat)
         
     def generate_visuals_for_evaluation(self, data, mode):

@@ -70,6 +70,9 @@ def get_params(opt, size):
     elif opt.preprocess == 'scale_width_and_crop':
         new_w = opt.load_size
         new_h = opt.load_size * h // w
+    # elif opt.preprocess == 'scale_width':
+    #     new_w = opt.load_size
+    #     new_h = opt.load_size * h // w
 
     x = random.randint(0, np.maximum(0, new_w - opt.crop_size))
     y = random.randint(0, np.maximum(0, new_h - opt.crop_size))
@@ -82,7 +85,7 @@ def get_params(opt, size):
 def get_transform(opt, params=None, grayscale=False, method=Image.BICUBIC, convert=True):
     transform_list = []
     if grayscale:
-        transform_list.append(transforms.Grayscale(1))
+        transform_list.append(transforms.Grayscale(3))
     if 'fixsize' in opt.preprocess:
         transform_list.append(transforms.Resize(params["size"], method))
     if 'resize' in opt.preprocess:
@@ -156,11 +159,11 @@ def __random_zoom(img, target_width, crop_width, method=Image.BICUBIC, factor=No
 def __scale_shortside(img, target_width, crop_width, method=Image.BICUBIC):
     ow, oh = img.size
     shortside = min(ow, oh)
-    if shortside >= target_width:
-        return img
-    else:
-        scale = target_width / shortside
-        return img.resize((round(ow * scale), round(oh * scale)), method)
+    # if shortside >= target_width:
+    #     return img
+    # else:
+    scale = target_width / shortside
+    return img.resize((round(ow * scale), round(oh * scale)), method)
 
 
 def __trim(img, trim_width):
@@ -185,7 +188,8 @@ def __scale_width(img, target_width, crop_width, method=Image.BICUBIC):
     if ow == target_width and oh >= crop_width:
         return img
     w = target_width
-    h = int(max(target_width * oh / ow, crop_width))
+    # h = int(max(target_width * oh / ow, crop_width))
+    h = int(target_width * oh / ow)
     return img.resize((w, h), method)
 
 
