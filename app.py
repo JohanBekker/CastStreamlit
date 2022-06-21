@@ -4,7 +4,6 @@ import io
 import os
 
 import six
-# import urllib3
 from urllib3.packages.six import MovedModule
 from _io import TextIOWrapper
 
@@ -61,11 +60,17 @@ m = st.markdown(
 
 st.sidebar.markdown("<h1 style='text-align: center; color: white;'>Check me out!</h1>", unsafe_allow_html=True)
 if st.sidebar.button("Portfolio        "):
-    open_url('https://www.datascienceportfol.io/JohanBekker')
+    st.markdown('<meta http-equiv="refresh" content="0;url=https://www.datascienceportfol.io/JohanBekker">',
+                unsafe_allow_html=True)
+    # open_url('https://www.datascienceportfol.io/JohanBekker')
 if st.sidebar.button("GitHub        "):
-    open_url('https://github.com/JohanBekker')
+    st.markdown('<meta http-equiv="refresh" content="0;url=https://github.com/JohanBekker">',
+                unsafe_allow_html=True)
+    # open_url('https://github.com/JohanBekker')
 if st.sidebar.button("LinkedIn        "):
-    open_url('https://www.linkedin.com/in/johan-bekker-3501a6168/')
+    st.markdown('<meta http-equiv="refresh" content="0;url=https://www.linkedin.com/in/johan-bekker-3501a6168/">',
+                unsafe_allow_html=True)
+    # open_url('https://www.linkedin.com/in/johan-bekker-3501a6168/')
 
 style = st.file_uploader('Upload your style image here', type=['jpg', 'jpeg', 'png'])
 content = st.file_uploader('Upload your content image here', type=['jpg', 'jpeg', 'png'])
