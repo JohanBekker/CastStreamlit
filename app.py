@@ -1,4 +1,5 @@
 import streamlit as st
+from bokeh.models.widgets import Div
 
 import io
 import os
@@ -60,16 +61,23 @@ m = st.markdown(
 
 st.sidebar.markdown("<h1 style='text-align: center; color: white;'>Check me out!</h1>", unsafe_allow_html=True)
 if st.sidebar.button("Portfolio        "):
-    st.markdown('<meta http-equiv="refresh" content="0;url=https://www.datascienceportfol.io/JohanBekker">',
-                unsafe_allow_html=True)
+    js = "window.location.href = 'https://www.datascienceportfol.io/JohanBekker'"  # Current tab
+    html = '<img src onerror="{}">'.format(js)
+    div = Div(text=html)
+    st.bokeh_chart(div)
     # open_url('https://www.datascienceportfol.io/JohanBekker')
 if st.sidebar.button("GitHub        "):
-    st.markdown('<meta http-equiv="refresh" content="0;url=https://github.com/JohanBekker">',
-                unsafe_allow_html=True)
+    #js = "window.open('https://github.com/JohanBekker')"  # New tab or window
+    js = "window.location.href = 'https://github.com/JohanBekker'"  # Current tab
+    html = '<img src onerror="{}">'.format(js)
+    div = Div(text=html)
+    st.bokeh_chart(div)
     # open_url('https://github.com/JohanBekker')
 if st.sidebar.button("LinkedIn        "):
-    st.markdown('<meta http-equiv="refresh" content="0;url=https://www.linkedin.com/in/johan-bekker-3501a6168/">',
-                unsafe_allow_html=True)
+    js = "window.location.href = 'https://www.linkedin.com/in/johan-bekker-3501a6168/'"  # Current tab
+    html = '<img src onerror="{}">'.format(js)
+    div = Div(text=html)
+    st.bokeh_chart(div)
     # open_url('https://www.linkedin.com/in/johan-bekker-3501a6168/')
 
 style = st.file_uploader('Upload your style image here', type=['jpg', 'jpeg', 'png'])
