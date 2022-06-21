@@ -61,7 +61,8 @@ m = st.markdown(
 
 st.sidebar.markdown("<h1 style='text-align: center; color: white;'>Check me out!</h1>", unsafe_allow_html=True)
 if st.sidebar.button("Portfolio        "):
-    js = "window.location.href = 'https://www.datascienceportfol.io/JohanBekker'"  # Current tab
+    js = "window.open('https://www.datascienceportfol.io/JohanBekker')"
+    # js = "window.location.href = 'https://www.datascienceportfol.io/JohanBekker'"  # Current tab
     html = '<img src onerror="{}">'.format(js)
     div = Div(text=html)
     st.bokeh_chart(div)
@@ -74,7 +75,8 @@ if st.sidebar.button("GitHub        "):
     st.bokeh_chart(div)
     # open_url('https://github.com/JohanBekker')
 if st.sidebar.button("LinkedIn        "):
-    js = "window.location.href = 'https://www.linkedin.com/in/johan-bekker-3501a6168/'"  # Current tab
+    js = "window.open('https://www.linkedin.com/in/johan-bekker-3501a6168/')"
+    # js = "window.location.href = 'https://www.linkedin.com/in/johan-bekker-3501a6168/'"  # Current tab
     html = '<img src onerror="{}">'.format(js)
     div = Div(text=html)
     st.bokeh_chart(div)
