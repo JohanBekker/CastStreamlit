@@ -67,8 +67,8 @@ if st.sidebar.button("Portfolio        "):
     st.bokeh_chart(div)
     # open_url('https://www.datascienceportfol.io/JohanBekker')
 if st.sidebar.button("GitHub        "):
-    #js = "window.open('https://github.com/JohanBekker')"  # New tab or window
-    js = "window.location.href = 'https://github.com/JohanBekker'"  # Current tab
+    js = "window.open('https://github.com/JohanBekker')"  # New tab or window
+    js = "window.location.href = 'https://share.streamlit.io/johanbekker/caststreamlit/main/app.py'"  # Current tab
     html = '<img src onerror="{}">'.format(js)
     div = Div(text=html)
     st.bokeh_chart(div)
